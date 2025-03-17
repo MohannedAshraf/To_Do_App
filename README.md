@@ -10,17 +10,17 @@
   
 ## 📸 Preview  
 ### 🖼 Screenshots  
-![Splash Screen](assets/screenshots/splash.png)  
-![Start Screen](assets/screenshots/start.png)  
-![Register Screen](assets/screenshots/register.png)  
-![Login Screen](assets/screenshots/login.png) 
-![Home1 Screen](assets/screenshots/home1.png)
-![AddTask Screen](assets/screenshots/addtask.png)
-![Profile Screen](assets/screenshots/profile.png)
-![Home2 Screen](assets/screenshots/home2.png)
-![UpdateProfile Screen](assets/screenshots/updateprofile.png)
-![Settings Screen](assets/screenshots/settings.png)
-![Changepassword Screen](assets/screenshots/changepassword.png)
+![Splash Screen](assets/screenshots/Screenshot_1742184537.png)  
+![Start Screen](assets/screenshots/Screenshot_1742184539.png)  
+![Register Screen](assets/screenshots/Screenshot_1742184403.png)  
+![Login Screen](assets/screenshots/Screenshot_1742184426.png) 
+![Home1 Screen](assets/screenshots/Screenshot_1742184599.png)
+![AddTask Screen](assets/screenshots/Screenshot_1742184607.png)
+![Profile Screen](assets/screenshots/Screenshot_1742184616.png)
+![Home2 Screen](assets/screenshots/Screenshot_1742184805.png)
+![UpdateProfile Screen](assets/screenshots/Screenshot_1742184622.png)
+![Settings Screen](assets/screenshots/Screenshot_1742184629.png)
+![Changepassword Screen](assets/screenshots/Screenshot_1742184626.png)
 
 ### 📽 Demo Video  
 <video src="assets/videos/demo.mp4" controls width="300"></video>  
