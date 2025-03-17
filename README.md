@@ -4,8 +4,7 @@
 
 ## 📌 Features  
 - 📝 Add, edit, and delete tasks  
-- 📆 Set due dates and reminders  
-- 🌙 Light & Dark mode support  
+- 📆 Set due dates and reminders   
 - 🔄 Sync tasks across devices (Future update)
   
 ## 📸 Preview  
