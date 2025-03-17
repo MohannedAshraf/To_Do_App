@@ -1,16 +1,26 @@
 # to_do_app
 
-A new Flutter project.
+🚀 **A simple and efficient task management app built with Flutter.**  
 
-## Getting Started
+## 📌 Features  
+- 📝 Add, edit, and delete tasks  
+- 📆 Set due dates and reminders  
+- 🌙 Light & Dark mode support  
+- 🔄 Sync tasks across devices (Future update)
+  
+## 📸 Preview  
+### 🖼 Screenshots  
+![Splash Screen](assets/screenshots/splash.png)  
+![Start Screen](assets/screenshots/start.png)  
+![Register Screen](assets/screenshots/register.png)  
+![Login Screen](assets/screenshots/login.png) 
+![Home1 Screen](assets/screenshots/home1.png)
+![AddTask Screen](assets/screenshots/addtask.png)
+![Profile Screen](assets/screenshots/profile.png)
+![Home2 Screen](assets/screenshots/home2.png)
+![UpdateProfile Screen](assets/screenshots/updateprofile.png)
+![Settings Screen](assets/screenshots/settings.png)
+![Changepassword Screen](assets/screenshots/changepassword.png)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 📽 Demo Video  
+<video src="assets/videos/demo.mp4" controls width="300"></video>  
