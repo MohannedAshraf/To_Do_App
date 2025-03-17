@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:to_do_app/Core/resources_manager/app_colors.dart';
 import 'package:to_do_app/Core/resources_manager/app_images.dart';
 import 'package:to_do_app/core/resources_manager/app_strings.dart';
+import 'package:to_do_app/core/widgets/image_manager/image_manager_view.dart';
 import 'package:to_do_app/core/widgets/mytextbutton.dart';
 import 'package:to_do_app/core/widgets/mytextformfield.dart';
 import 'package:to_do_app/features/auth_and_profile/manager/register_cubit/register_cubit.dart';
@@ -25,19 +29,40 @@ class RegisterPage extends StatelessWidget {
                 key: RegisterCubit.get(context).formKey,
                 child: Column(
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 298,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                        ),
-                        image: DecorationImage(
-                          image: AssetImage(MyImages.palastine),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    ImageManagerView(
+                      onSelected: (XFile image) {},
+                      selectedImageBuilder: (XFile image) {
+                        return Container(
+                          width: double.infinity,
+                          height: 298,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                            ),
+                            image: DecorationImage(
+                              image: FileImage(File(image.path)),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                      unSelectedImageBuilder: () {
+                        return Container(
+                          width: double.infinity,
+                          height: 298,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                            ),
+                            image: DecorationImage(
+                              image: AssetImage(MyImages.palastine),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     MyTextFormField(
                       top: 23,

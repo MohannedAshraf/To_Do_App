@@ -6,8 +6,10 @@ import 'package:to_do_app/Core/resources_manager/app_icons.dart';
 import 'package:to_do_app/core/resources_manager/app_strings.dart';
 import 'package:to_do_app/core/widgets/customappbar.dart';
 import 'package:to_do_app/features/addtask/data/model/get_task_reposne_model.dart';
-import 'package:to_do_app/features/addtask/manager/cubit/get_tasks_cubit.dart';
-import 'package:to_do_app/features/addtask/manager/cubit/get_tasks_state.dart';
+import 'package:to_do_app/features/addtask/manager/add_task_cubit/add_task_cubit.dart';
+import 'package:to_do_app/features/addtask/manager/add_task_cubit/add_task_state.dart';
+import 'package:to_do_app/features/addtask/manager/get_task_cubit/get_tasks_cubit.dart';
+import 'package:to_do_app/features/addtask/manager/get_task_cubit/get_tasks_state.dart';
 import 'package:to_do_app/features/addtask/views/addtaskpage.dart';
 
 class NewHomepage extends StatelessWidget {
@@ -16,119 +18,129 @@ class NewHomepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetTasksCubit()..getTasks(),
-      child: Scaffold(
-        appBar: CustomAppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AddTaskPage()),
-                );
-              },
-              icon: SvgPicture.asset(Myicons.addtask),
-            ),
-          ],
-        ),
-
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              SizedBox(height: 50),
-              Row(
-                children: [
-                  Text(
-                    MyAppStrings.tasks,
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(width: 20),
-                  Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: MyColors.mintgreen,
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Center(
-                      child: Text(
-                        MyAppStrings.five,
-                        style: TextStyle(
-                          color: MyColors.green,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              BlocBuilder<GetTasksCubit, GetTasksState>(
-                builder: (context, state) {
-                  if (state is GetTasksLoading) {
-                    return CircularProgressIndicator();
-                  } else if (state is GetTasksError) {
-                    return Column(
-                      children: [
-                        Text(state.error),
-                        TextButton(
-                          onPressed: () {
-                            if (state is GetTasksSuccess) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('got Tasks')),
-                              );
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => NewHomepage(),
-                                ),
-                              );
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(state.error)),
-                              );
-                            }
-                          },
-                          child: Text('Refresh'),
-                        ),
-                      ],
-                    );
-                  } else if (state is GetTasksSuccess) {
-                    return Expanded(
-                      child: ListView.builder(
-                        itemCount: state.tasks.length,
-                        itemBuilder:
-                            (context, index) =>
-                                TaskItemBuilder(task: state.tasks[index]),
-                      ),
-                    );
-                  }
-
-                  return SizedBox();
+      create: (context) => AddTaskCubit(),
+      child: BlocProvider(
+        create: (context) => GetTasksCubit()..getTasks(),
+        child: Scaffold(
+          appBar: CustomAppBar(
+            actions: [
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddTaskPage()),
+                  );
                 },
+                icon: SvgPicture.asset(Myicons.addtask),
               ),
-
-              // BlocBuilder<GetTasksCubit, GetTasksState>(
-              //   builder: (context, state) {
-              //     if (state is GetTasksLoading) {
-              //       return CircularProgressIndicator();
-              //     } else if (state is GetTasksSuccess) {
-              //       return Expanded(
-              //         child: ListView.builder(
-              //           itemCount: state.tasks.length,
-              //           itemBuilder:
-              //               (context, index) =>
-              //                   TaskItemBuilder(task: state.tasks[index]),
-              //         ),
-              //       );
-              //     }
-              //     return SizedBox();
-              //   },
-              // ),
             ],
+          ),
+
+          body: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                SizedBox(height: 50),
+                Row(
+                  children: [
+                    Text(
+                      MyAppStrings.tasks,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: MyColors.mintgreen,
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          MyAppStrings.five,
+                          style: TextStyle(
+                            color: MyColors.green,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                BlocBuilder<AddTaskCubit, AddTaskState>(
+                  builder: (context, state) {
+                    return BlocBuilder<GetTasksCubit, GetTasksState>(
+                      builder: (context, state) {
+                        if (state is GetTasksLoading) {
+                          return CircularProgressIndicator();
+                        } else if (state is GetTasksError) {
+                          return Column(
+                            children: [
+                              Text(state.error),
+                              TextButton(
+                                onPressed: () {
+                                  if (state is GetTasksSuccess) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('got Tasks')),
+                                    );
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => NewHomepage(),
+                                      ),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(state.error)),
+                                    );
+                                  }
+                                },
+                                child: Text('Refresh'),
+                              ),
+                            ],
+                          );
+                        } else if (state is GetTasksSuccess) {
+                          return Expanded(
+                            child: ListView.builder(
+                              itemCount: state.tasks.length,
+                              itemBuilder:
+                                  (context, index) =>
+                                      TaskItemBuilder(task: state.tasks[index]),
+                            ),
+                          );
+                        }
+
+                        return SizedBox();
+                      },
+                    );
+                  },
+                ),
+
+                // BlocBuilder<GetTasksCubit, GetTasksState>(
+                //   builder: (context, state) {
+                //     if (state is GetTasksLoading) {
+                //       return CircularProgressIndicator();
+                //     } else if (state is GetTasksSuccess) {
+                //       return Expanded(
+                //         child: ListView.builder(
+                //           itemCount: state.tasks.length,
+                //           itemBuilder:
+                //               (context, index) =>
+                //                   TaskItemBuilder(task: state.tasks[index]),
+                //         ),
+                //       );
+                //     }
+                //     return SizedBox();
+                //   },
+                // ),
+              ],
+            ),
           ),
         ),
       ),

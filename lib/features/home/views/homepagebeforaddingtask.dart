@@ -5,7 +5,7 @@ import 'package:to_do_app/Core/resources_manager/app_icons.dart';
 import 'package:to_do_app/Core/resources_manager/app_images.dart';
 import 'package:to_do_app/core/resources_manager/app_strings.dart';
 import 'package:to_do_app/core/widgets/customappbar.dart';
-import 'package:to_do_app/features/addtask/manager/cubit/get_tasks_cubit.dart';
+import 'package:to_do_app/features/addtask/manager/get_task_cubit/get_tasks_cubit.dart';
 import 'package:to_do_app/features/addtask/views/addtaskpage.dart';
 
 class HomeBeforTasks extends StatelessWidget {

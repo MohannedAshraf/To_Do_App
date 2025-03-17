@@ -7,4 +7,5 @@ abstract class EndPoints {
   static const String update = 'update_profile';
   static const String myTasks = 'my_tasks';
   static const String changepassword = 'change_password';
+  static const String addtask = "new_task";
 }
