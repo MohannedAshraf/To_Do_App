@@ -1,4 +1,10 @@
 abstract class MyAppStrings {
+  //start page
+  static const String welcome = "Welcome To";
+  static const String doit = "Do It !";
+  static const String ready = "Ready to conquer your tasks? Let's Do ";
+  static const String together = "It together.";
+
   //Splash button
   static const String spalshb = "Go";
   //Start button

@@ -34,7 +34,7 @@ class StartPage extends StatelessWidget {
             ),
             Center(
               child: Text(
-                "Welcome To",
+                MyAppStrings.welcome,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w400,
@@ -44,7 +44,7 @@ class StartPage extends StatelessWidget {
             ),
             Center(
               child: Text(
-                "Do It !",
+                MyAppStrings.doit,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w400,
@@ -55,7 +55,7 @@ class StartPage extends StatelessWidget {
             SizedBox(height: 25),
             Center(
               child: Text(
-                "Ready to conquer your tasks? Let's Do ",
+                MyAppStrings.ready,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -65,7 +65,7 @@ class StartPage extends StatelessWidget {
             ),
             Center(
               child: Text(
-                "It together.",
+                MyAppStrings.together,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,

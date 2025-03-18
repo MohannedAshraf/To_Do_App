@@ -65,6 +65,23 @@ class RegisterPage extends StatelessWidget {
                       },
                     ),
                     MyTextFormField(
+                      validator: (String? text) {
+                        String error;
+                        if (text != null) {
+                          if (text.isNotEmpty) {
+                            if (text.length >= 4) {
+                              return null;
+                            } else {
+                              error = 'Username must be more than 3';
+                            }
+                          } else {
+                            error = 'Username must be not empty';
+                          }
+                        } else {
+                          error = 'You must assign username';
+                        }
+                        return error;
+                      },
                       top: 23,
                       controller: RegisterCubit.get(context).username,
                       maxlines: 1,
@@ -72,12 +89,50 @@ class RegisterPage extends StatelessWidget {
                       labeltext: MyAppStrings.name,
                     ),
                     MyTextFormField(
+                      validator: (String? textpass) {
+                        String error;
+
+                        if (textpass != null) {
+                          if (textpass.isNotEmpty) {
+                            if (textpass.length >= 6) {
+                              return null;
+                            } else {
+                              error = 'Password must be more than 5';
+                            }
+                          } else {
+                            error = "Password mustn't be  empty";
+                          }
+                        } else {
+                          error = 'You must assign Password';
+                        }
+                        return error;
+                      },
                       controller: RegisterCubit.get(context).password,
                       maxlines: 1,
                       hinttext: MyAppStrings.passwordhint,
                       labeltext: MyAppStrings.password,
                     ),
                     MyTextFormField(
+                      validator: (String? textcon) {
+                        String error;
+                        if (textcon != null) {
+                          if (textcon.isNotEmpty) {
+                            // ignore: unrelated_type_equality_checks
+                            if (textcon !=
+                                RegisterCubit.get(context).password) {
+                              return null;
+                            } else {
+                              error =
+                                  'Confirm password  must be  equal password';
+                            }
+                          } else {
+                            error = 'Confirm password must be not empty';
+                          }
+                        } else {
+                          error = 'You must confirm Password';
+                        }
+                        return error;
+                      },
                       controller: confirmpass,
                       maxlines: 1,
                       hinttext: MyAppStrings.confirmpasshint,

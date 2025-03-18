@@ -10,6 +10,7 @@ class AddTaskCubit extends Cubit<AddTaskState> {
   TextEditingController title = TextEditingController();
   TextEditingController describtion = TextEditingController();
   AddTaskRepo addTaskRepo = AddTaskRepo();
+  GlobalKey<FormState> formKey = GlobalKey();
   void addTask() async {
     emit(AddTaskLoading());
     var response = await addTaskRepo.addTask(
@@ -17,5 +18,9 @@ class AddTaskCubit extends Cubit<AddTaskState> {
       describtion: describtion.text,
     );
     response.fold((e) => emit(AddTaskError(e)), (r) => emit(AddTaskSucsses()));
+  }
+
+  bool validate() {
+    return formKey.currentState?.validate() ?? false;
   }
 }

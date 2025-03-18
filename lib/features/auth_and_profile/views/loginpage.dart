@@ -70,12 +70,7 @@ class LoginPage extends StatelessWidget {
                         if (text != null) {
                           if (text.isNotEmpty) {
                             if (text.length >= 6) {
-                              // RegExp emailRegEx = RegExp(
-                              //   r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-                              // );
-                              //if (emailRegEx.hasMatch(text)) {
                               return null;
-                              //}
                             } else {
                               error = 'Password must be more than 5';
                             }

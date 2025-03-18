@@ -29,9 +29,13 @@ class APIHelper {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
+          // ignore: avoid_print
           print("Headers : ${options.headers.toString()}");
+          // ignore: avoid_print
           print("data : ${(options.data as FormData).fields.toString()}");
+          // ignore: avoid_print
           print("method : ${options.method}");
+          // ignore: avoid_print
           print("EndPoint : ${options.path}");
           return handler.next(options); // Continue request
         },
@@ -76,6 +80,7 @@ class APIHelper {
       );
       return ApiResponse.fromResponse(response);
     } catch (e) {
+      // ignore: avoid_print
       print("-----Error ${e.toString()}");
       return ApiResponse.fromError(e);
     }

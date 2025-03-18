@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:to_do_app/Core/resources_manager/app_colors.dart';
 import 'package:to_do_app/Core/resources_manager/app_images.dart';
-
+import 'package:to_do_app/core/resources_manager/app_colors.dart';
 import 'package:to_do_app/core/resources_manager/app_strings.dart';
-import 'package:to_do_app/core/widgets/mytextbutton.dart';
 import 'package:to_do_app/core/widgets/mytextformfield.dart';
 import 'package:to_do_app/features/addtask/manager/add_task_cubit/add_task_cubit.dart';
 import 'package:to_do_app/features/addtask/manager/add_task_cubit/add_task_state.dart';
 import 'package:to_do_app/features/addtask/manager/get_task_cubit/get_tasks_cubit.dart';
-import 'package:to_do_app/features/addtask/manager/get_task_cubit/get_tasks_state.dart';
 import 'package:to_do_app/features/home/views/new_home_page.dart';
 
 class AddTaskPage extends StatelessWidget {
@@ -44,12 +41,30 @@ class AddTaskPage extends StatelessWidget {
                   ),
                 ),
                 MyTextFormField(
+                  validator: (String? title) {
+                    String error;
+                    if (title != null) {
+                      return null;
+                    } else {
+                      error = "title mustn't be empty";
+                    }
+                    return error;
+                  },
                   controller: AddTaskCubit.get(context).title,
                   maxlines: 1,
                   hinttext: MyAppStrings.titlehint,
                   labeltext: MyAppStrings.title,
                 ),
                 MyTextFormField(
+                  validator: (String? descrebtion) {
+                    String error;
+                    if (descrebtion != null) {
+                      return null;
+                    } else {
+                      error = "title mustn't be  empty";
+                    }
+                    return error;
+                  },
                   controller: AddTaskCubit.get(context).describtion,
                   maxlines: 1,
                   hinttext: MyAppStrings.descriptionhint,
@@ -73,43 +88,36 @@ class AddTaskPage extends StatelessWidget {
                     }
                   },
                   builder: (context, state) {
-                    return TextButton(
-                      onPressed: () {
-                        AddTaskCubit.get(context).addTask();
-                      },
-                      child: Text('Add Task'),
-                    );
-                    return BlocConsumer<GetTasksCubit, GetTasksState>(
-                      listener: (context, state) {
-                        if (state is GetTasksSuccess) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(state.tasks.toString())),
-                          );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => NewHomepage(),
-                            ),
-                          );
-                        } else if (state is GetTasksError) {
-                          ScaffoldMessenger.of(
-                            context,
-                          ).showSnackBar(SnackBar(content: Text(state.error)));
-                        }
-                      },
-                      builder: (context, state) {
-                        if (state is GetTasksLoading) {
-                          return CircularProgressIndicator();
-                        }
-
-                        return MyTextButton(
-                          onpressed: GetTasksCubit.get(context).getTasks,
-                          offsety: 4,
-                          shadowcolor: MyColors.gray,
-                          buttontext: MyAppStrings.addtasktitle,
-                          newscreen: NewHomepage(),
-                        );
-                      },
+                    return Container(
+                      width: 331,
+                      height: 48.01,
+                      margin: EdgeInsets.only(left: 22, right: 22, top: 30),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            // ignore: deprecated_member_use
+                            color: MyColors.gray.withOpacity(0.2),
+                            blurRadius: 10,
+                            spreadRadius: 0,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(14),
+                        color: MyColors.green,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          AddTaskCubit.get(context).addTask();
+                        },
+                        child: Text(
+                          MyAppStrings.addtasktitle,
+                          style: TextStyle(
+                            color: MyColors.white,
+                            fontSize: 19,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ),
                     );
                   },
                 ),
