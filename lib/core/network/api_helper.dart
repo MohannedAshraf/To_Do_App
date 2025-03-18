@@ -9,20 +9,35 @@ class APIHelper {
   static final APIHelper _apiHelper = APIHelper._internal();
 
   factory APIHelper() {
+    addInterceptors();
     return _apiHelper;
   }
 
   APIHelper._internal();
 
   // declaring dio
-  Dio dio = Dio(
-    BaseOptions(
-      baseUrl: EndPoints.baseURL,
-      connectTimeout: Duration(seconds: 10),
-      sendTimeout: Duration(seconds: 10),
-      receiveTimeout: Duration(seconds: 10),
-    ),
-  );
+  static late Dio dio;
+  static void addInterceptors() {
+    dio = Dio(
+      BaseOptions(
+        baseUrl: EndPoints.baseURL,
+        connectTimeout: Duration(seconds: 10),
+        sendTimeout: Duration(seconds: 10),
+        receiveTimeout: Duration(seconds: 10),
+      ),
+    );
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          print("Headers : ${options.headers.toString()}");
+          print("data : ${(options.data as FormData).fields.toString()}");
+          print("method : ${options.method}");
+          print("EndPoint : ${options.path}");
+          return handler.next(options); // Continue request
+        },
+      ),
+    );
+  }
 
   // get request
 

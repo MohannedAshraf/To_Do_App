@@ -8,7 +8,7 @@ import 'package:to_do_app/features/addtask/data/model/get_task_reposne_model.dar
 class AddTaskRepo {
   APIHelper apiHelper = APIHelper();
 
-  Future<Either<String, List<TaskModel>>> addTask({
+  Future<Either<String, String>> addTask({
     required String title,
     required String describtion,
   }) async {
@@ -16,15 +16,11 @@ class AddTaskRepo {
       ApiResponse response = await apiHelper.postRequest(
         endPoint: EndPoints.addtask,
         data: {"title": title, "description": describtion},
-        isAuthorized: false,
       );
 
       if (response.status) {
         // success
-        AddTaskResponseModel addTaskResponseModel =
-            AddTaskResponseModel.fromJson(response.data);
-
-        return Right(addTaskResponseModel.message as List<TaskModel>);
+        return Right(response.message);
       } else {
         return Left(response.message);
       }
