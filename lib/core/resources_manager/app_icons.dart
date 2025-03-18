@@ -1,4 +1,5 @@
 abstract class Myicons {
+  //all icons
   static const String baseiconpass = "assets/icons/";
   static const String addtask = "${baseiconpass}addtask.svg";
   static const String home = "${baseiconpass}home.svg";

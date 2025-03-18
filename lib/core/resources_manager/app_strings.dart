@@ -52,5 +52,7 @@ abstract class MyAppStrings {
   static const String title = "Title";
   static const String titlehint = "type your title name";
   static const String description = "Description";
-  static const String descriptionhint = "type describtion"; //00
+  static const String descriptionhint = "type describtion";
+  static const String dsss = "  ";
+  static const String dsszs = "  ";
 }
