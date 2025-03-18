@@ -32,4 +32,4 @@
 ![Changepassword Screen](assets/screenshots/Screenshot_1742184626.png)
 
 ### 📽 Demo Video  
-[![Watch video ](https://img.youtube.com/vi/-objZ3EFKqc/maxresdefault.jpg)](https://youtube.com/shorts/-objZ3EFKqc)
+[![Watch video ](https://img.youtube.com/vi/-objZ3EFKqc/maxresdefault.jpg)](https://youtube.com/shorts/Y2TqmVKbwYo)
